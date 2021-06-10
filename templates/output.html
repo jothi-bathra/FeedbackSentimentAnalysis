@@ -3,8 +3,46 @@
         <title>
             Student feedback analysis
         </title>
+        <style>
+            table.dataframe, .dataframe th, .dataframe td {
+            border: 1;
+            border-bottom: 1px solid #faf9f9;
+            border-collapse: collapse;
+            text-align:left;
+            padding: 10px;
+            margin-bottom: 40px;
+            font-size: 0.9em;
+            background-color: rgb(114, 209, 238);
+            }
+            button {
+            background-color: #09445f; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            }
+        </style>
+        
     </head>
     <body>
+        
+        <div class=page>
+            <h1><center>Analysis Report</center></h1>
+             <center>{{tables|safe }}</center>
+        </div>
+        <br>
+        <center>
+        <button onclick="printFunction()">DOWNLOAD RESULT</button>
+​        </center>
+        <script>
+        function printFunction() {
+        window.print();
+        }
+        </script>
+        <br>
         <div><embed src={{ piech|safe }} /></div>
     </body>
 </html>

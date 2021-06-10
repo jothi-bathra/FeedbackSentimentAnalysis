@@ -1,6 +1,7 @@
-from flask import Flask, make_response, request,render_template
+from flask import Flask, make_response, request,render_template,send_from_directory
 import io
 import csv
+
 import pandas as pd
 from textblob import TextBlob
 import nltk
@@ -14,7 +15,6 @@ def home():
 
 @app.route('/input', methods=["POST"])
 def input():
-    msg=""
     c=0
     f = request.files['filename']
     name=f.filename
@@ -58,19 +58,22 @@ def input():
     print(data['sentiment'])
     print(polarity)
 
-    data.to_csv('result.csv')
-
-    pie_chart = pygal.Pie(height=300)
+    pie_chart = pygal.Pie(height=200)
     pie_chart.title = 'FEEDBACK ANALYSIS'
     results=[(p,'Positive'),(n,'Negative'),(neu,'Neutral')]
     for r in results:
         pie_chart.add(r[1], r[0])
     pie_chart.value_formatter = lambda x: "%.15f" % x
     piech=pie_chart.render_data_uri()
-
-    html= render_template('output.html', piech=piech)
-    return html
     
+    resp = make_response(data.to_csv())
+    resp.headers["Content-Disposition"] = "attachment; filename=export.csv"
+    resp.headers["Content-Type"] = "text/csv"
+
+    html= render_template('output.html', piech=piech,tables=data.to_html(classes='data'))
+    return html
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
