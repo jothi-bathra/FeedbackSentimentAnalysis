@@ -27,11 +27,11 @@ def input():
    
         csv_input = csv.reader(stream)
         data=pd.read_csv(stream)
-        print(len(data))
+      
     
     else:
         data = pd.read_excel(f)
-        print(len(data))
+     
 
     feedback=list(data[data.columns[1]])
     polarity=[]
@@ -55,8 +55,7 @@ def input():
       
     
     data['sentiment']=sentiment
-    print(data['sentiment'])
-    print(polarity)
+ 
 
     pie_chart = pygal.Pie(height=200)
     pie_chart.title = 'FEEDBACK ANALYSIS'
