@@ -13,7 +13,7 @@ app=Flask(__name__)
 def home():
     return render_template('input.html')
 
-@app.route('/input', methods=["POST"])
+@app.route('/input', methods=["POST","GET"])
 def input():
     c=0
     f = request.files['filename']
