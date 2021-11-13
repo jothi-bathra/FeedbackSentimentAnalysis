@@ -1,10 +1,9 @@
-from flask import Flask, make_response, request,render_template,send_from_directory
+from flask import Flask, make_response, request,render_template
 import io
 import csv
 
 import pandas as pd
 from textblob import TextBlob
-import nltk
 import pygal
 
 app=Flask(__name__)
