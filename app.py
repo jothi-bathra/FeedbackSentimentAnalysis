@@ -8,14 +8,14 @@ import nltk
 import pygal
 
 app=Flask(__name__)
-@app.route('/')
+@app.route('/home')
 def home():
     return render_template('home.html')
 
 @app.route('/render')
 def render():
     return render_template('ins.html')
-    
+
 @app.route('/render2')
 def render2():
     return render_template('input.html')
