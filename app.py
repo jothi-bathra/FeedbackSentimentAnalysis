@@ -1,15 +1,23 @@
-from flask import Flask, make_response, request,render_template
+from flask import Flask, make_response, request,render_template,send_from_directory
 import io
 import csv
 
 import pandas as pd
 from textblob import TextBlob
+import nltk
 import pygal
 
 app=Flask(__name__)
-
 @app.route('/')
 def home():
+    return render_template('home.html')
+
+@app.route('/render')
+def render():
+    return render_template('ins.html')
+    
+@app.route('/render2')
+def render2():
     return render_template('input.html')
 
 @app.route('/input', methods=["POST","GET"])
