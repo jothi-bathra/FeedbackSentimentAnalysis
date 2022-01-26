@@ -43,3 +43,4 @@ Werkzeug==2.0.1
 wincertstore==0.2
 wrapt==1.12.1
 xlrd==2.0.1
+gunicorn
